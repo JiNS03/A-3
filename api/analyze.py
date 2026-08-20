@@ -21,6 +21,99 @@ GEMINI_URL = (
     f"{GEMINI_MODEL}:generateContent"
 )
 
+# Groq은 Gemini 무료 할당량이 소진(429)되었을 때 자동으로 넘어가는 백업 provider입니다.
+# GROQ_API_KEY가 설정되어 있지 않으면 이 fallback은 자동으로 건너뜁니다.
+GROQ_MODEL = "llama-3.3-70b-versatile"
+GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
+
+
+def call_gemini(prompt, api_key):
+    """Gemini API 호출. 성공 시 (text, None) 실패 시 (None, 에러정보) 반환."""
+    try:
+        resp = requests.post(
+            GEMINI_URL,
+            params={"key": api_key},
+            json={
+                "contents": [{"parts": [{"text": prompt}]}],
+                "generationConfig": {
+                    "temperature": 0.9,
+                    "maxOutputTokens": 700,
+                    # gemini-2.5-flash는 기본적으로 내부 사고(thinking)에 토큰을 먼저 소모합니다.
+                    # thinkingBudget을 0으로 두면 바로 답변 생성에 토큰을 사용해 잘림을 방지합니다.
+                    "thinkingConfig": {"thinkingBudget": 0},
+                },
+            },
+            timeout=12,
+        )
+    except requests.exceptions.Timeout:
+        return None, {"status": 504, "error": "Gemini 응답 지연(타임아웃)"}
+    except requests.exceptions.RequestException as e:
+        return None, {"status": 502, "error": f"Gemini 호출 오류: {e}"}
+
+    if resp.status_code != 200:
+        return None, {"status": resp.status_code, "error": f"Gemini API 오류: {resp.status_code}"}
+
+    try:
+        data = resp.json()
+        text = data["candidates"][0]["content"]["parts"][0]["text"].strip()
+        return text, None
+    except (KeyError, IndexError, ValueError):
+        return None, {"status": 502, "error": "Gemini 응답 해석 실패"}
+
+
+def call_groq(prompt, api_key):
+    """Groq API 호출 (Gemini 실패 시 백업). 성공 시 (text, None) 실패 시 (None, 에러정보) 반환."""
+    try:
+        resp = requests.post(
+            GROQ_URL,
+            headers={"Authorization": f"Bearer {api_key}"},
+            json={
+                "model": GROQ_MODEL,
+                "messages": [{"role": "user", "content": prompt}],
+                "temperature": 0.9,
+                "max_tokens": 700,
+            },
+            timeout=12,
+        )
+    except requests.exceptions.Timeout:
+        return None, {"status": 504, "error": "Groq 응답 지연(타임아웃)"}
+    except requests.exceptions.RequestException as e:
+        return None, {"status": 502, "error": f"Groq 호출 오류: {e}"}
+
+    if resp.status_code != 200:
+        return None, {"status": resp.status_code, "error": f"Groq API 오류: {resp.status_code}"}
+
+    try:
+        data = resp.json()
+        text = data["choices"][0]["message"]["content"].strip()
+        return text, None
+    except (KeyError, IndexError, ValueError):
+        return None, {"status": 502, "error": "Groq 응답 해석 실패"}
+
+
+def generate_comment(prompt):
+    """Gemini를 우선 시도하고, 실패하면 Groq으로 자동 전환합니다.
+    성공 시 (text, provider) 실패 시 (None, 에러정보) 반환."""
+    gemini_key = os.environ.get("GEMINI_API_KEY")
+    groq_key = os.environ.get("GROQ_API_KEY")
+
+    if gemini_key:
+        text, err = call_gemini(prompt, gemini_key)
+        if text:
+            return text, "gemini"
+        print(f"[fallback] Gemini 실패({err}), Groq으로 전환 시도")
+    else:
+        err = {"status": 500, "error": "GEMINI_API_KEY가 설정되지 않았습니다."}
+
+    if groq_key:
+        text, groq_err = call_groq(prompt, groq_key)
+        if text:
+            return text, "groq"
+        return None, groq_err
+
+    # Groq 키도 없으면 원래 Gemini 에러를 그대로 반환
+    return None, err
+
 
 def build_prompt(type_name, type_code, type_desc, answers_text):
     return f"""당신은 성향 테스트 결과를 재미있고 통찰력 있게 설명해주는 카피라이터입니다.
@@ -62,9 +155,8 @@ class handler(BaseHTTPRequestHandler):
         self.wfile.write(body)
 
     def do_POST(self):
-        api_key = os.environ.get("GEMINI_API_KEY")
-        if not api_key:
-            self._send_json(500, {"error": "GEMINI_API_KEY가 설정되지 않았습니다."})
+        if not os.environ.get("GEMINI_API_KEY") and not os.environ.get("GROQ_API_KEY"):
+            self._send_json(500, {"error": "GEMINI_API_KEY 또는 GROQ_API_KEY 중 하나 이상이 설정되어야 합니다."})
             return
 
         try:
@@ -85,47 +177,14 @@ class handler(BaseHTTPRequestHandler):
             return
 
         prompt = build_prompt(type_name, type_code, type_desc, answers_text)
+        comment, result = generate_comment(prompt)
 
-        try:
-            resp = requests.post(
-                GEMINI_URL,
-                params={"key": api_key},
-                json={
-                    "contents": [{"parts": [{"text": prompt}]}],
-                    "generationConfig": {
-                        "temperature": 0.9,
-                        "maxOutputTokens": 700,
-                        # gemini-2.5-flash는 기본적으로 내부 사고(thinking)에 토큰을 먼저 소모합니다.
-                        # thinkingBudget을 0으로 두면 바로 답변 생성에 토큰을 사용해 잘림을 방지합니다.
-                        "thinkingConfig": {"thinkingBudget": 0},
-                    },
-                },
-                timeout=12,
-            )
-        except requests.exceptions.Timeout:
-            self._send_json(504, {"error": "AI 응답이 지연되고 있습니다. 잠시 후 다시 시도해주세요."})
-            return
-        except requests.exceptions.RequestException as e:
-            self._send_json(502, {"error": f"AI 호출 중 오류가 발생했습니다: {e}"})
+        if comment is None:
+            self._send_json(result.get("status", 502), {"error": result.get("error", "AI 호출 실패")})
             return
 
-        if resp.status_code != 200:
-            self._send_json(
-                resp.status_code,
-                {"error": f"Gemini API 오류: {resp.status_code}", "detail": resp.text[:300]},
-            )
-            return
-
-        try:
-            data = resp.json()
-            comment = (
-                data["candidates"][0]["content"]["parts"][0]["text"].strip()
-            )
-        except (KeyError, IndexError, ValueError):
-            self._send_json(502, {"error": "AI 응답을 해석하지 못했습니다."})
-            return
-
-        self._send_json(200, {"comment": comment})
+        # result는 성공 시 provider 이름("gemini" 또는 "groq")
+        self._send_json(200, {"comment": comment, "provider": result})
 
     def do_GET(self):
         self._send_json(405, {"error": "POST 요청만 지원합니다."})
