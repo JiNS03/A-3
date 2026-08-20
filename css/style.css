@@ -532,6 +532,56 @@ footer.site-footer {
 }
 .partner-note strong { color: var(--ink); }
 
+/* AI 코멘트 구조화 섹션 */
+.ai-box .ai-section { margin-bottom: 16px; }
+.ai-box .ai-section:last-child { margin-bottom: 0; }
+.ai-box .ai-section-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  color: var(--result-color, var(--pink));
+  margin: 0 0 4px;
+}
+.ai-box .ai-section-body { margin: 0; line-height: 1.7; }
+
+/* AI 추가 질문 박스 */
+.ask-box {
+  background: #fff;
+  border-radius: var(--radius-md);
+  padding: 26px 28px;
+  box-shadow: var(--shadow-soft);
+  text-align: left;
+  margin-bottom: 24px;
+}
+.ask-box h4 { font-family: var(--font-display); font-size: 1.1rem; margin: 0 0 6px; }
+.ask-hint { color: var(--ink-soft); font-size: 0.85rem; margin: 0 0 16px; }
+.ask-input-row { display: flex; gap: 10px; }
+.ask-input-row input {
+  flex: 1;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--canvas-soft);
+  background: var(--canvas-soft);
+  color: var(--ink);
+}
+.ask-input-row input:focus { outline: none; border-color: var(--periwinkle); background: #fff; }
+.ask-input-row .btn { padding: 12px 22px; font-size: 0.92rem; white-space: nowrap; }
+.ask-answer {
+  margin-top: 16px;
+  background: var(--canvas-soft);
+  border-radius: var(--radius-sm);
+  padding: 16px 18px;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  border-left: 4px solid var(--result-color, var(--periwinkle));
+}
+
+@media (max-width: 520px) {
+  .ask-input-row { flex-direction: column; }
+  .ask-input-row .btn { width: 100%; }
+}
+
 .result-actions {
   display: flex;
   gap: 12px;

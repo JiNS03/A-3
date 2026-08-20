@@ -191,6 +191,12 @@ function renderResultCard() {
   document.getElementById("partner-note").style.display = "none";
   document.getElementById("result-loading").textContent = "AI가 당신의 카드를 그리는 중...";
 
+  // AI 질문 박스 초기화
+  document.getElementById("ask-box").style.display = "none";
+  document.getElementById("ask-input").value = "";
+  document.getElementById("ask-warning").textContent = "";
+  document.getElementById("ask-answer").style.display = "none";
+
   // 카드 뒤집기 연출
   setTimeout(() => flipCard.classList.add("flipped"), 400);
 }
@@ -238,17 +244,100 @@ async function fetchAIComment() {
   }
 }
 
+// "[소제목]\n본문" 형태로 온 텍스트를 섹션 배열로 분해
+function parseAIComment(text) {
+  const matches = [...text.matchAll(/\[([^\]]+)\]\s*([\s\S]*?)(?=\[[^\]]+\]|$)/g)];
+  if (matches.length === 0) return null;
+  return matches
+    .map(m => ({ title: m[1].trim(), body: m[2].trim() }))
+    .filter(s => s.body);
+}
+
 function showAIComment(comment) {
   document.getElementById("result-loading").textContent = "";
   const aiBox = document.getElementById("ai-box");
+  const aiText = document.getElementById("ai-text");
+
   if (comment) {
-    document.getElementById("ai-text").textContent = comment;
+    const sections = parseAIComment(comment);
+    if (sections) {
+      aiText.innerHTML = sections.map(s => `
+        <div class="ai-section">
+          <p class="ai-section-title">${s.title}</p>
+          <p class="ai-section-body">${s.body}</p>
+        </div>
+      `).join("");
+    } else {
+      aiText.textContent = comment;
+    }
     aiBox.classList.add("show");
   } else {
     aiBox.style.display = "none";
   }
   document.getElementById("desc-box").style.display = "block";
   document.getElementById("partner-note").style.display = "block";
+  document.getElementById("ask-box").style.display = "block";
+}
+
+// ---------- AI에게 더 물어보기 ----------
+document.getElementById("btn-ask").addEventListener("click", handleAskQuestion);
+document.getElementById("ask-input").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") handleAskQuestion();
+});
+
+async function handleAskQuestion() {
+  const input = document.getElementById("ask-input");
+  const warning = document.getElementById("ask-warning");
+  const answerBox = document.getElementById("ask-answer");
+  const question = input.value.trim();
+
+  // 실패 처리: 빈 입력
+  if (!question) {
+    warning.textContent = "질문을 입력해주세요.";
+    return;
+  }
+  warning.textContent = "";
+
+  const askBtn = document.getElementById("btn-ask");
+  askBtn.disabled = true;
+  askBtn.textContent = "생각하는 중...";
+  answerBox.style.display = "none";
+
+  const t = state.resultType;
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 15000);
+
+  try {
+    const res = await fetch("/api/ask", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        typeName: t.name,
+        typeCode: t.code,
+        typeDesc: t.desc,
+        question
+      }),
+      signal: controller.signal
+    });
+    clearTimeout(timeoutId);
+
+    const data = await res.json();
+    if (!res.ok || !data.answer) throw new Error(data.error || `API 오류: ${res.status}`);
+
+    answerBox.textContent = data.answer;
+    answerBox.style.display = "block";
+    input.value = "";
+  } catch (err) {
+    clearTimeout(timeoutId);
+    console.error(err);
+    const isAbort = err.name === "AbortError";
+    warning.textContent = isAbort
+      ? "응답이 지연되고 있어요. 잠시 후 다시 시도해주세요."
+      : "답변을 불러오지 못했어요. 다시 시도해주세요.";
+  } finally {
+    askBtn.disabled = false;
+    askBtn.textContent = "물어보기";
+  }
 }
 
 // ---------- 결과 액션 ----------

@@ -1,12 +1,12 @@
 """
 Vercel Serverless Function (Python)
-POST /api/analyze
-입력: { typeName, typeCode, typeDesc, answersText }
-출력: { comment: "AI가 생성한 2~3문장 개인화 코멘트" }
+POST /api/ask
+입력: { typeName, typeCode, typeDesc, question }
+출력: { answer: "질문에 대한 2~3문장 답변" }
 
-Gemini API 키는 반드시 환경 변수(GEMINI_API_KEY)로 관리합니다.
-로컬 개발 시 .env 파일 등을 사용하고, Vercel 배포 시에는
-프로젝트 Settings > Environment Variables 에 등록하세요.
+결과 화면의 'AI에게 더 물어보기' 기능에서 사용됩니다.
+사용자가 자신의 성향 유형에 대해 자유롭게 질문하면,
+해당 유형 정보를 맥락으로 넣어 Gemini가 답변합니다.
 """
 
 import json
@@ -21,34 +21,22 @@ GEMINI_URL = (
     f"{GEMINI_MODEL}:generateContent"
 )
 
+MAX_QUESTION_LENGTH = 200
 
-def build_prompt(type_name, type_code, type_desc, answers_text):
-    return f"""당신은 성향 테스트 결과를 재미있고 통찰력 있게 설명해주는 카피라이터입니다.
+
+def build_prompt(type_name, type_code, type_desc, question):
+    return f"""당신은 성향 테스트 결과를 바탕으로 친근하게 답변해주는 상담사입니다.
 
 사용자의 성향 유형: {type_name} ({type_code})
-이 유형의 기본 특징: {type_desc}
+이 유형의 특징: {type_desc}
 
-사용자의 답변 내역:
-{answers_text}
+사용자의 질문: {question}
 
-위 내용을 참고해서 이 사람만을 위한 개인화된 분석을 작성해주세요. 아래 구조를 반드시 지켜서 4개 문단으로 작성하고, 각 문단 앞에 표시된 소제목을 그대로 붙여주세요.
-
-[오늘의 한마디]
-이 사람의 답변 패턴에서 느껴지는 인상을 2문장으로 다정하게 표현.
-
-[답변에서 보이는 특징]
-사용자가 실제로 선택한 답변들을 근거로 들어, 어떤 경향이 두드러지는지 2~3문장으로 구체적으로 설명. 일반적인 유형 설명이 아니라 실제 답변 내용을 언급할 것.
-
-[강점이 빛나는 순간]
-이 유형이 특히 잘 해낼 수 있는 상황이나 관계를 2문장으로 설명.
-
-[오늘을 위한 조언]
-오늘 하루 실천할 수 있는 짧고 구체적인 조언 1~2문장으로 마무리.
-
-작성 규칙:
-- 형식적이지 않고, 친한 친구가 다정하게 얘기해주는 듯한 말투
-- 소제목([오늘의 한마디] 등)은 그대로 유지하되 그 외 다른 설명, 따옴표, 마크다운 기호(*, # 등)는 사용하지 말 것
-- 전체 250~350자 내외
+위 유형 정보를 바탕으로 사용자의 질문에 답변해주세요.
+- 2~3문장, 150자 내외로 간결하게
+- 친한 친구가 답해주는 듯한 편안한 말투
+- 유형과 관련 없는 질문이면, 유형 설명과 자연스럽게 연결해서 답하거나 정중히 답하기 어렵다고 안내
+- 따옴표, 마크다운 기호 없이 본문 텍스트만 출력
 """
 
 
@@ -78,13 +66,20 @@ class handler(BaseHTTPRequestHandler):
         type_name = body.get("typeName", "")
         type_code = body.get("typeCode", "")
         type_desc = body.get("typeDesc", "")
-        answers_text = body.get("answersText", "")
+        question = (body.get("question") or "").strip()
 
+        # 실패 처리: 빈 입력
+        if not question:
+            self._send_json(400, {"error": "질문을 입력해주세요."})
+            return
+        if len(question) > MAX_QUESTION_LENGTH:
+            self._send_json(400, {"error": f"질문은 {MAX_QUESTION_LENGTH}자 이내로 입력해주세요."})
+            return
         if not type_name or not type_code:
             self._send_json(400, {"error": "typeName과 typeCode는 필수입니다."})
             return
 
-        prompt = build_prompt(type_name, type_code, type_desc, answers_text)
+        prompt = build_prompt(type_name, type_code, type_desc, question)
 
         try:
             resp = requests.post(
@@ -93,10 +88,8 @@ class handler(BaseHTTPRequestHandler):
                 json={
                     "contents": [{"parts": [{"text": prompt}]}],
                     "generationConfig": {
-                        "temperature": 0.9,
-                        "maxOutputTokens": 700,
-                        # gemini-2.5-flash는 기본적으로 내부 사고(thinking)에 토큰을 먼저 소모합니다.
-                        # thinkingBudget을 0으로 두면 바로 답변 생성에 토큰을 사용해 잘림을 방지합니다.
+                        "temperature": 0.8,
+                        "maxOutputTokens": 400,
                         "thinkingConfig": {"thinkingBudget": 0},
                     },
                 },
@@ -118,14 +111,14 @@ class handler(BaseHTTPRequestHandler):
 
         try:
             data = resp.json()
-            comment = (
+            answer = (
                 data["candidates"][0]["content"]["parts"][0]["text"].strip()
             )
         except (KeyError, IndexError, ValueError):
             self._send_json(502, {"error": "AI 응답을 해석하지 못했습니다."})
             return
 
-        self._send_json(200, {"comment": comment})
+        self._send_json(200, {"answer": answer})
 
     def do_GET(self):
         self._send_json(405, {"error": "POST 요청만 지원합니다."})
