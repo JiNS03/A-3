@@ -1,4 +1,4 @@
-<img width="2850" height="1531" alt="home_desktop" src="https://github.com/user-attachments/assets/9f159856-70bc-4e75-bdd8-ee810bd57c20" /># TONE — 성향 컬러 테스트
+# TONE — 성향 컬러 테스트
 
 🔗 **배포 링크**: [https://a-3-seven.vercel.app/](https://a-3-seven.vercel.app/)
 
