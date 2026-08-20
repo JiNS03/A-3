@@ -1,4 +1,4 @@
-# TONE — 성향 컬러 테스트
+<img width="2850" height="1531" alt="home_desktop" src="https://github.com/user-attachments/assets/9f159856-70bc-4e75-bdd8-ee810bd57c20" /># TONE — 성향 컬러 테스트
 
 🔗 **배포 링크**: [https://a-3-seven.vercel.app/](https://a-3-seven.vercel.app/)
 
@@ -40,10 +40,11 @@
 
 > 🖼️ **스크린샷 삽입 위치 — 홈 화면**
 >
-> ![홈 화면 - 데스크톱](screenshots/home-desktop.png)
-> *(데스크톱 화면 캡처를 여기에 삽입하세요)*
+> ![홈 화면 - 데스크톱](images/home-desktop.png)
+> *<img width="2850" height="1531" alt="home_desktop" src="https://github.com/user-attachments/assets/a36e39a0-4ff4-4076-bf90-3bf35df9732d" />
+*
 >
-> ![홈 화면 - 모바일](screenshots/home-mobile.png)
+> ![홈 화면 - 모바일](images/home-mobile.png)
 > *(모바일 화면 캡처를 여기에 삽입하세요)*
 
 ### 2-2. 모드 선택 화면
@@ -52,8 +53,9 @@
 
 > 🖼️ **스크린샷 삽입 위치 — 모드 선택 화면**
 >
-> ![모드 선택 화면](screenshots/mode-select.png)
-> *(화면 캡처를 여기에 삽입하세요)*
+> ![모드 선택 화면](images/mode-select.png)
+> *<img width="2655" height="1529" alt="mod_select" src="https://github.com/user-attachments/assets/f4734fa7-85b7-4b54-bcce-4bb5a52d2a2e" />
+*
 
 ### 2-3. 문제 풀이 화면
 
@@ -61,8 +63,9 @@
 
 > 🖼️ **스크린샷 삽입 위치 — 문제 풀이 화면**
 >
-> ![문제 풀이 화면](screenshots/quiz.png)
-> *(화면 캡처를 여기에 삽입하세요)*
+> ![문제 풀이 화면](images/quiz.png)
+> *<img width="2565" height="1499" alt="quiz" src="https://github.com/user-attachments/assets/698a3dc1-025e-4a95-b324-185743becc1a" />
+*
 
 ### 2-4. 결과 화면
 
@@ -70,11 +73,17 @@
 
 > 🖼️ **스크린샷 삽입 위치 — 결과 화면 (AI 기능 동작 장면)**
 >
-> ![결과 화면](screenshots/result.png)
-> *(AI 코멘트가 표시된 상태의 화면 캡처를 여기에 삽입하세요)*
+> ![결과 화면](images/result.png)
+> *<img width="1212" height="1204" alt="result" src="https://github.com/user-attachments/assets/c3e49010-69a9-4902-bde5-69e0936cf986" />
+*
+> 
+> ![결과 화면](images/result_ai.png)
+> *<img width="1425" height="1454" alt="result_ai" src="https://github.com/user-attachments/assets/5b471b79-8ec4-40b7-9f7a-6bac72f8a77d" />
+*
 >
-> ![AI 질문 기능](screenshots/result-ask.png)
-> *("AI에게 더 물어보기" 답변이 표시된 화면 캡처를 여기에 삽입하세요)*
+> ![AI 질문 기능](images/result-ask.png)
+> *<img width="1278" height="587" alt="ask" src="https://github.com/user-attachments/assets/e68b5b57-4a01-4bdd-a56a-62827c4d43be" />
+*
 
 ---
 
@@ -183,10 +192,10 @@ API 키는 코드나 README, 스크린샷에 직접 노출하지 않습니다. �
 
 > 🖼️ **스크린샷 삽입 위치 — 반응형 확인**
 >
-> ![반응형 - 화면 크기 1](screenshots/responsive-1.png)
+> ![반응형 - 화면 크기 1](images/responsive-1.png)
 > *(예: 1920px 데스크톱 화면)*
 >
-> ![반응형 - 화면 크기 2](screenshots/responsive-2.png)
+> ![반응형 - 화면 크기 2](images/responsive-2.png)
 > *(예: 390px 모바일 화면)*
 
 ---
