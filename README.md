@@ -40,7 +40,7 @@
 
 > 🖼️ *홈 화면*
 > [](images/home-desktop.png)
-> *<img width="2850" height="1531" alt="home_desktop" src="https://github.com/user-attachments/assets/a36e39a0-4ff4-4076-bf90-3bf35df9732d" />
+> <img width="2850" height="1531" alt="home_desktop" src="https://github.com/user-attachments/assets/a36e39a0-4ff4-4076-bf90-3bf35df9732d" />
 *
 >
 > ![홈 화면 - 모바일](images/home-mobile.png)
