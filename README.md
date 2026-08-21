@@ -43,8 +43,9 @@
 > <img width="2850" height="1531" alt="home_desktop" src="https://github.com/user-attachments/assets/a36e39a0-4ff4-4076-bf90-3bf35df9732d" />
 *
 >
-> ![홈 화면 - 모바일](images/home-mobile.png)
-> *(모바일 화면 캡처를 여기에 삽입하세요)*
+> [](images/home-mobile.png)
+> <img width="1440" height="2795" alt="home_mobile" src="https://github.com/user-attachments/assets/ce789ff6-29f7-4540-bc61-cd010cf7a8b9" />
+
 
 ### 2-2. 모드 선택 화면
 
