@@ -52,8 +52,8 @@
 
 > 🖼️ **스크린샷 삽입 위치 — 모드 선택 화면**
 >
-> ![](images/mode-select.png)
-> *<img width="2655" height="1529" alt="mod_select" src="https://github.com/user-attachments/assets/f4734fa7-85b7-4b54-bcce-4bb5a52d2a2e" />
+> [](images/mode-select.png)
+> <img width="2655" height="1529" alt="mod_select" src="https://github.com/user-attachments/assets/f4734fa7-85b7-4b54-bcce-4bb5a52d2a2e" />
 *
 
 ### 2-3. 문제 풀이 화면
@@ -62,8 +62,8 @@
 
 > 🖼️ **스크린샷 삽입 위치 — 문제 풀이 화면**
 >
-> ![문제 풀이 화면](images/quiz.png)
-> *<img width="2565" height="1499" alt="quiz" src="https://github.com/user-attachments/assets/698a3dc1-025e-4a95-b324-185743becc1a" />
+> [](images/quiz.png)
+> <img width="2565" height="1499" alt="quiz" src="https://github.com/user-attachments/assets/698a3dc1-025e-4a95-b324-185743becc1a" />
 *
 
 ### 2-4. 결과 화면
@@ -77,11 +77,11 @@
 *
 > 
 > ![결과 화면](images/result_ai.png)
-> *<img width="1425" height="1454" alt="result_ai" src="https://github.com/user-attachments/assets/5b471b79-8ec4-40b7-9f7a-6bac72f8a77d" />
+> <img width="1425" height="1454" alt="result_ai" src="https://github.com/user-attachments/assets/5b471b79-8ec4-40b7-9f7a-6bac72f8a77d" />
 *
 >
 > ![AI 질문 기능](images/result-ask.png)
-> *<img width="1278" height="587" alt="ask" src="https://github.com/user-attachments/assets/e68b5b57-4a01-4bdd-a56a-62827c4d43be" />
+> <img width="1278" height="587" alt="ask" src="https://github.com/user-attachments/assets/e68b5b57-4a01-4bdd-a56a-62827c4d43be" />
 *
 
 ---
