@@ -65,18 +65,15 @@
 *
 
 ### 2-4. 결과 화면
-
 마지막 문항에 답하면 카드가 뒷면에서 앞면으로 뒤집히는 연출과 함께 결과가 공개됩니다. 카드에는 확정된 유형의 이모지·이름·3글자 코드(예: EFS)가 표시되고, 그 아래로 AI가 생성한 개인화 분석, 유형 설명, 강점 태그, 궁합이 좋은 유형 안내가 순서대로 나타납니다. 화면 하단에는 자신의 유형에 대해 자유롭게 질문할 수 있는 "AI에게 더 물어보기" 입력창과, 다시 하기·홈으로·카드 다운로드 버튼이 있습니다.
 
-> 🖼️ *결과 화면 (AI 기능 동작 장면)*
-> ![결과 화면](images/result.png)
+> 🖼️ *결과 화면 (카드 공개 직후)*
 > <img width="1212" height="1204" alt="result" src="https://github.com/user-attachments/assets/c3e49010-69a9-4902-bde5-69e0936cf986" />
-> 
-> ![결과 화면](images/result_ai.png)
+
+> 🖼️ *결과 화면 (AI 코멘트 노출)*
 > <img width="1425" height="1454" alt="result_ai" src="https://github.com/user-attachments/assets/5b471b79-8ec4-40b7-9f7a-6bac72f8a77d" />
-*
->
-> ![AI 질문 기능](images/result-ask.png)
+
+> 🖼️ *AI 질문 기능*
 > <img width="1278" height="587" alt="ask" src="https://github.com/user-attachments/assets/e68b5b57-4a01-4bdd-a56a-62827c4d43be" />
 *
 
