@@ -38,11 +38,11 @@
 
 첫 화면은 서비스를 짧게 소개하는 히어로 영역으로 시작합니다. "당신은 어떤 색의 사람인가요?"라는 질문형 헤드라인과 함께, 배경에는 부드럽게 떠다니는 컬러 블롭 애니메이션을 넣어 밝고 화사한 분위기를 냈습니다. 스크롤을 내리면 8가지 성향 유형을 카드 형태로 미리 소개하는 갤러리 섹션이 순서대로 나타나며, 각 카드는 화면에 들어올 때마다 살짝 떠오르는 애니메이션으로 등장합니다.
 
-> 🖼️ *홈 화면*
+> 🖼️ *홈 화면 - 데스크탑*
 > [](images/home-desktop.png)
 > <img width="2850" height="1531" alt="home_desktop" src="https://github.com/user-attachments/assets/a36e39a0-4ff4-4076-bf90-3bf35df9732d" />
 *
->
+> 🖼️ *홈 화면 - 모바일*
 > [](images/home-mobile.png)
 > <img width="1440" height="2795" alt="home_mobile" src="https://github.com/user-attachments/assets/ce789ff6-29f7-4540-bc61-cd010cf7a8b9" />
 
