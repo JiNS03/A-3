@@ -52,7 +52,7 @@
 
 > 🖼️ **스크린샷 삽입 위치 — 모드 선택 화면**
 >
-> ![모드 선택 화면](images/mode-select.png)
+> ![](images/mode-select.png)
 > *<img width="2655" height="1529" alt="mod_select" src="https://github.com/user-attachments/assets/f4734fa7-85b7-4b54-bcce-4bb5a52d2a2e" />
 *
 
