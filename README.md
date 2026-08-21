@@ -70,8 +70,7 @@
 
 > 🖼️ *결과 화면 (AI 기능 동작 장면)*
 > ![결과 화면](images/result.png)
-> *<img width="1212" height="1204" alt="result" src="https://github.com/user-attachments/assets/c3e49010-69a9-4902-bde5-69e0936cf986" />
-*
+> <img width="1212" height="1204" alt="result" src="https://github.com/user-attachments/assets/c3e49010-69a9-4902-bde5-69e0936cf986" />
 > 
 > ![결과 화면](images/result_ai.png)
 > <img width="1425" height="1454" alt="result_ai" src="https://github.com/user-attachments/assets/5b471b79-8ec4-40b7-9f7a-6bac72f8a77d" />
