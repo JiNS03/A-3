@@ -62,11 +62,10 @@
 > <img width="320" alt="결과 화면" src="https://github.com/user-attachments/assets/5b471b79-8ec4-40b7-9f7a-6bac72f8a77d" />
 *
 > 🖼️ *AI 코멘트*
-> > <img width="320" alt="AI 코멘트" src="https://github.com/user-attachments/assets/5b471b79-8ec4-40b7-9f7a-6bac72f8a77d" />
+> <img width="320" alt="AI 코멘트" src="https://github.com/user-attachments/assets/5b471b79-8ec4-40b7-9f7a-6bac72f8a77d" />
 *
 > 🖼️ *AI 질문 기능*
 > <img width="500" alt="AI 질문 기능" src="https://github.com/user-attachments/assets/e68b5b57-4a01-4bdd-a56a-62827c4d43be" />
-*
 
 ---
 
