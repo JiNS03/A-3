@@ -46,14 +46,26 @@
 
 > 🖼️ **스크린샷**
 >
+> 🖼️ *홈 화면*
 > <img width="500" alt="홈 화면" src="https://github.com/user-attachments/assets/a36e39a0-4ff4-4076-bf90-3bf35df9732d" />
-> <img width="500" alt="모드 선택 화면" src="https://github.com/user-attachments/assets/f4734fa7-85b7-4b54-bcce-4bb5a52d2a2e" />
-> <img width="500" alt="문제 풀이 화면" src="https://github.com/user-attachments/assets/698a3dc1-025e-4a95-b324-185743becc1a" />
-> <img width="320" alt="결과 화면" src="https://github.com/user-attachments/assets/5b471b79-8ec4-40b7-9f7a-6bac72f8a77d" />
-> <img width="500" alt="AI 질문 기능" src="https://github.com/user-attachments/assets/e68b5b57-4a01-4bdd-a56a-62827c4d43be" />
+
+> 🖼️ *홈 화면 - 모바일*
 > <img width="220" alt="모바일 화면" src="https://github.com/user-attachments/assets/ce789ff6-29f7-4540-bc61-cd010cf7a8b9" />
->
-> *(`width` 숫자를 조절하면 표시 크기를 바꿀 수 있습니다.)*
+
+> 🖼️ *모드 선택 화면*
+> <img width="500" alt="모드 선택 화면" src="https://github.com/user-attachments/assets/f4734fa7-85b7-4b54-bcce-4bb5a52d2a2e" />
+
+> 🖼️ *문제 풀이 화면*
+> <img width="500" alt="문제 풀이 화면" src="https://github.com/user-attachments/assets/698a3dc1-025e-4a95-b324-185743becc1a" />
+
+> 🖼️ *결과 화면 (카드 공개 직후)*
+> <img width="320" alt="결과 화면" src="https://github.com/user-attachments/assets/5b471b79-8ec4-40b7-9f7a-6bac72f8a77d" />
+
+> 🖼️ *결과 화면 (AI 코멘트 노출)*
+> > <img width="320" height="1454" alt="result_ai" src="https://github.com/user-attachments/assets/5b471b79-8ec4-40b7-9f7a-6bac72f8a77d" />
+
+> 🖼️ *AI 질문 기능*
+> <img width="500" alt="AI 질문 기능" src="https://github.com/user-attachments/assets/e68b5b57-4a01-4bdd-a56a-62827c4d43be" />
 
 ---
 
