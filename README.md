@@ -47,8 +47,9 @@
 > 🖼️ **스크린샷**
 >
 > 🖼️ *홈 화면*
+> 
 > <img width="500" alt="홈 화면" src="https://github.com/user-attachments/assets/a36e39a0-4ff4-4076-bf90-3bf35df9732d" />
-*
+
 > 🖼️ *홈 화면 - 모바일*
 > <img width="220" alt="모바일 화면" src="https://github.com/user-attachments/assets/ce789ff6-29f7-4540-bc61-cd010cf7a8b9" />
 *
