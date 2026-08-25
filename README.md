@@ -66,6 +66,7 @@
 *
 > 🖼️ *AI 질문 기능*
 > <img width="500" alt="AI 질문 기능" src="https://github.com/user-attachments/assets/e68b5b57-4a01-4bdd-a56a-62827c4d43be" />
+*
 
 ---
 
