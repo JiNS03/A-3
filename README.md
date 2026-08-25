@@ -46,14 +46,14 @@
 
 > 🖼️ **스크린샷**
 >
-> ![홈 화면](images/home-desktop.png)
-> ![모드 선택 화면](images/mode-select.png)
-> ![문제 풀이 화면](images/quiz.png)
-> ![결과 화면](images/result.png)
-> ![AI 질문 기능](images/result-ask.png)
-> ![모바일 화면](images/home-mobile.png)
+> <img src="images/home-desktop.png" width="700" alt="홈 화면"/>
+> <img src="images/mode-select.png" width="700" alt="모드 선택 화면"/>
+> <img src="images/quiz.png" width="700" alt="문제 풀이 화면"/>
+> <img src="images/result.png" width="700" alt="결과 화면"/>
+> <img src="images/result-ask.png" width="700" alt="AI 질문 기능"/>
+> <img src="images/home-mobile.png" width="300" alt="모바일 화면"/>
 >
-> *(위 경로에 해당하는 파일명으로 `images/` 폴더에 캡처본을 넣으면 자동으로 표시됩니다. 데스크톱/모바일 각각의 화면과, 홈→퀴즈→결과로 이어지는 탐색 흐름을 모두 포함해 주세요.)*
+> *(위 경로에 해당하는 파일명으로 `images/` 폴더에 캡처본을 넣으면 자동으로 표시됩니다. `width` 숫자를 조절하면 표시 크기를 바꿀 수 있습니다. 데스크톱/모바일 각각의 화면과, 홈→퀴즈→결과로 이어지는 탐색 흐름을 모두 포함해 주세요.)*
 
 ---
 
