@@ -45,27 +45,34 @@
 | 결과 | 카드 플립 연출로 유형 공개, AI 분석 4단락, 강점 태그, 궁합 유형, AI 추가 질문, 카드 다운로드 |
 
 > 🖼️ **스크린샷**
+> 
 >
 > 🖼️ *홈 화면*
 > 
 > <img width="500" alt="홈 화면" src="https://github.com/user-attachments/assets/a36e39a0-4ff4-4076-bf90-3bf35df9732d" />
 
 > 🖼️ *홈 화면 - 모바일*
+> 
 > <img width="220" alt="모바일 화면" src="https://github.com/user-attachments/assets/ce789ff6-29f7-4540-bc61-cd010cf7a8b9" />
-*
+
 > 🖼️ *모드 선택 화면*
+> 
 > <img width="500" alt="모드 선택 화면" src="https://github.com/user-attachments/assets/f4734fa7-85b7-4b54-bcce-4bb5a52d2a2e" />
-*
+
 > 🖼️ *문제 풀이 화면*
+> 
 > <img width="500" alt="문제 풀이 화면" src="https://github.com/user-attachments/assets/698a3dc1-025e-4a95-b324-185743becc1a" />
-*
+
 > 🖼️ *결과 화면*
+> 
 > <img width="320" alt="결과 화면" src="https://github.com/user-attachments/assets/5b471b79-8ec4-40b7-9f7a-6bac72f8a77d" />
-*
+
 > 🖼️ *AI 코멘트*
+> 
 > <img width="320" alt="AI 코멘트" src="https://github.com/user-attachments/assets/5b471b79-8ec4-40b7-9f7a-6bac72f8a77d" />
-*
+
 > 🖼️ *AI 질문 기능*
+> 
 > <img width="500" alt="AI 질문 기능" src="https://github.com/user-attachments/assets/e68b5b57-4a01-4bdd-a56a-62827c4d43be" />
 
 ---
